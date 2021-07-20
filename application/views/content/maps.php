@@ -1,8 +1,20 @@
-<section class="page-section portfolio" id="portfolio">
-    <div class="container">
-        <div id="map" style="width: 100%; height: 500px"></div>
+<div class="row h-100">
+    <div class="col-md-3 filter-section">
+        <section class="page-section mb-0" id="filter">
+            <div class="container">
+                INI FILTER
+            </div>
+        </section>
     </div>
-</section>
+    <div class="col-md-9">
+        <section class="page-section bg-white text-primary mb-0" id="about">
+            <div class="container">
+                <!-- <h2>INI MAPS</h2> -->
+                <div id="map" style="width: 100%; height: 500px"></div>
+            </div>
+        </section>
+    </div>
+</div>
 
 
 <script type='text/javascript'>
@@ -66,88 +78,3 @@
         map.openPopup(popup);
     }
 </script>
-
-
-<!-- <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWR4K0m_9VINVwNbNVBn8HhcNlKvE4yhA&callback=initMap" type="text/javascript"></script>
-<script type="text/javascript">
-    var marker;
-    var map;
-
-    //lokasi koordinat pada Google Map
-    var malang = new google.maps.LatLng(-7.982398, 112.630892);
-
-    function initialize() {
-        var mapOptions = {
-            zoom: 17,
-            mapTypeId: google.maps.MapTypeId.SATELLITE,
-            center: malang
-        };
-
-        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
-        //posisi balon
-        marker = new google.maps.Marker({
-            map: map,
-            draggable: true,
-            animation: google.maps.Animation.DROP,
-            position: malang
-        });
-        google.maps.event.addListener(marker, 'click', toggleBounce);
-    }
-
-    function toggleBounce() {
-        if (marker.getAnimation() != null)
-            marker.setAnimation(null);
-        else
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
-</script>
-
-<section class="page-section portfolio" id="portfolio">
-    <div class="container">
-
-        <body onload="initialize()">
-            <div id="map_canvas" style="width: 600px; height: 500px;">malang</div>
-        </body>
-    </div>
-</section>
-
-
-<!-- <body onLoad="initialize()">
-    <div id="map_canvas" style="width: 500px; height: 400px;">map div</div>
-</body>
-
-<script type="text/javascript">
-    var marker;
-    var map;
-
-    //lokasi koordinat pada Google Map
-    var malang = new google.maps.LatLng(-7.982398, 112.630892);
-
-    function initialize() {
-        var mapOptions = {
-            zoom: 17,
-            mapTypeId: google.maps.MapTypeId.SATELLITE,
-            center: malang
-        };
-
-        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
-        //posisi balon
-        marker = new google.maps.Marker({
-            map: map,
-            draggable: true,
-            animation: google.maps.Animation.DROP,
-            position: malang
-        });
-        google.maps.event.addListener(marker, 'click', toggleBounce);
-    }
-
-    function toggleBounce() {
-        if (marker.getAnimation() != null)
-            marker.setAnimation(null);
-        else
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
-</script> -->

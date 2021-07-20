@@ -27,12 +27,21 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-		$rs = $this->m_maps->get_rs();
-
-		$data['content'] = "maps";
-		$data['dtRS'] = $rs;
+		$data['content'] = "home";
         $this->load->view('main', $data);
+	}
 
-        // $this->load->view('mapsio');
+	public function maps()
+	{
+		$rs = $this->m_maps->get_rs();
+		$data['dtRS'] = $rs;
+		$data['content'] = "maps";
+        $this->load->view('main', $data);
+	}
+
+	public function about()
+	{
+		$data['content'] = "about";
+        $this->load->view('main', $data);
 	}
 }
