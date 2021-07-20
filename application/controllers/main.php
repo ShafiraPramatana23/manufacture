@@ -18,9 +18,21 @@ class Main extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('m_maps');
+	}
+
 	public function index()
 	{
-		$data['content'] = "home";
+		$rs = $this->m_maps->get_rs();
+
+		$data['content'] = "maps";
+		$data['dtRS'] = $rs;
         $this->load->view('main', $data);
+
+        // $this->load->view('mapsio');
 	}
 }
