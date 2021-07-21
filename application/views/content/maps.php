@@ -1,9 +1,102 @@
 <div class="row h-100">
     <div class="col-md-3 filter-section">
         <section class="page-section mb-0" id="filter">
-            <div class="container">
-                INI FILTER
-            </div>
+            <form action="<?php echo base_url('index.php/main/detail'); ?>" method="post">
+                <div class="container">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Kategori Pabrik :</label>
+                            <select class="form-control" name="kategori" id="exampleFormControlSelect1">
+                                <option value="">Pilih Kategori</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <!-- <?php
+                                        $i = 0;
+                                        foreach ($data_kategori as $data_kategori[]) { ?>
+                                    <option value="<?= $data_kategori[$i]['Id'] ?>"><?= $data_kategori[$i]['Jobs_TypeName'] ?></option>
+                                <?php $i++;
+                                        } ?> -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Kota Pabrik :</label>
+                            <select class="form-control" name="kota" id="exampleFormControlSelect1">
+                                <option value="">Pilih Kota</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Popularitas :</label>
+                            <select class="form-control" name="popularitas" id="exampleFormControlSelect1">
+                                <option value="">Pilih Popularitas</option>
+                                <option>Bintang 5</option>
+                                <option>Bintang 4 ke atas</option>
+                                <option>Bintang 3 ke atas</option>
+                                <option>Bintang 2 ke atas</option>
+                                <option>Bintang 1 ke atas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Jumlah Karyawan :</label>
+                            <select class="form-control" name="jml_karyawan" id="exampleFormControlSelect1">
+                                <option value="">Pilih Jumlah</option>
+                                <option>< 50</option>
+                                <option>< 100</option>
+                                <option>< 1000</option>
+                                <option>> 2000</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <label>Jarak dari Pusat Kota :</label>
+                        <div class="col">
+                            <input type="text" class="form-control" name="min_jarak" placeholder="Min">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="max_jarak" placeholder="Max">
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <label>Rentang Gaji :</label>
+                        <div class="col">
+                            <input type="text" class="form-control" name="min_gaji" placeholder="Min">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="max_gaji" placeholder="Max">
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-light">Setel Ulang</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-dark">Terapkan</button>
+                        </div>
+                    </div>
+            </form>
         </section>
     </div>
     <div class="col-md-9">
@@ -16,13 +109,12 @@
     </div>
 </div>
 
-
 <script type='text/javascript'>
     var rsLayer = new L.LayerGroup();
     var dokterLayer = new L.LayerGroup();
 
     var rsico = L.icon({
-		iconUrl: 'assets/assets/img/rs.png',
+        iconUrl: '<?=base_url()?>assets/assets/img/rs.png',
         iconSize: [20, 20], // size of the icon
         shadowSize: [10, 14], // size of the shadow
         iconAnchor: [22, 64], // point of the icon which will correspond to marker's location
@@ -64,6 +156,13 @@
         'Rumah Sakit': rsLayer,
         'Dokter': dokterLayer
     }));
+
+    var myLocIco = L.icon({
+        iconUrl: '<?=base_url()?>assets/assets/img/marker.svg',
+        iconSize: [50, 50],
+        iconAnchor: [25, 35],
+      });
+    L.marker([-7.981894, 112.626503], {icon: myLocIco}).addTo(map).bindPopup("Lokasi Anda");
 
     map.on('click', onMapClick);
 

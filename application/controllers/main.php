@@ -44,4 +44,10 @@ class Main extends CI_Controller {
 		$data['content'] = "about";
         $this->load->view('main', $data);
 	}
+
+	public function detail()
+	{
+		$data['content'] = "detail";
+        $this->load->view('main', $data);
+	}
 }
