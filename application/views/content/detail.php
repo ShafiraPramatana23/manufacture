@@ -6,72 +6,44 @@
                     <h4>Nama Pabrik</h4>
                 </div>
                 <div class="text-center">
-                    <img class="img-fluid" style="width: 50%; height: 50%; margin: 5%" src="<?= base_url() ?>assets/assets/img/portfolio/game.png" alt="..." />
+                    <img class="img-fluid" style="width: 30%; height: 30%; margin: 5%" src="<?= base_url() ?>assets/assets/img/portfolio/game.png" alt="..." />
                 </div>
                 <br>
-                <div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Alamat :</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <p class="mb-0"><b>Kategori</b></p>
+                            <p class="text-primary mt-0">Makanan & Minuman</p>
                         </div>
-                        <div class="col" style="text-align: end;">
-                            <p>-</p>
+                        <div class="row">
+                            <p class="mb-0"><b>Email</b></p>
+                            <p class="text-primary mt-0">abcedgeemailx@email.com</p>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Kategori :</p>
+                        <div class="row">
+                            <p class="mb-0"><b>Nomor Telepon</b></p>
+                            <p class="text-primary mt-0">0341-2348777</p>
                         </div>
-                        <div class="col" style="text-align: end;">
-                            <p>-</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Popularitas :</p>
-                        </div>
-                        <div class="col" style="text-align: end;">
-                            <p>-</p>
+                        <div class="row">
+                            <p class="mb-0"><b>Alamat</b></p>
+                            <p class="text-primary mt-0">Jalan Malang12 dhgfsj hdgfds fgdsgf dfsfge fdshgf gdhsgf fdgsjfgy</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>No Telp :</p>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <p class="mb-0"><b>Popularitas</b></p>
+                            <p class="text-primary mt-0">3,5</p>
                         </div>
-                        <div class="col" style="text-align: end;">
-                            <p>-</p>
+                        <div class="row">
+                            <p class="mb-0"><b>Standar Gaji</b></p>
+                            <p class="text-primary mt-0">Rp 3.000.000,00</p>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Email :</p>
+                        <div class="row">
+                            <p class="mb-0"><b>Jumlah Karyawan</b></p>
+                            <p class="text-primary mt-0">2000</p>
                         </div>
-                        <div class="col" style="text-align: end;">
-                            <p>-</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Standar Gaji :</p>
-                        </div>
-                        <div class="col" style="text-align: end;">
-                            <p>-</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Jumlah Karyawan :</p>
-                        </div>
-                        <div class="col" style="text-align: end;">
-                            <p>-</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Jarak dari Pusat Kota :</p>
-                        </div>
-                        <div class="col" style="text-align: end;">
-                            <p>-</p>
+                        <div class="row">
+                            <p class="mb-0"><b>Jarak Dari Pusat Kota</b></p>
+                            <p class="text-primary mt-0">10,3 km</p>
                         </div>
                     </div>
                 </div>
