@@ -48,8 +48,8 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" id="lat" value="<?php echo $dtManuf[0]['latitude'];?>">
-            <input type="hidden" id="long" value="<?php echo $dtManuf[0]['longitude'];?>">
+            <input type="hidden" id="lat" value="<?php echo $dtManuf[0]['latitude']; ?>">
+            <input type="hidden" id="long" value="<?php echo $dtManuf[0]['longitude']; ?>">
         </section>
     </div>
     <div class="col-md-5">
@@ -68,7 +68,28 @@
     var qst = new L.TileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png');
     var googleSatellite = new L.Google('SATELLITE');
     var googleHybrid = new L.Google('HYBRID');
-    // var bingMap = new L.BingLayer('AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf');
+    var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+    var googleTraffic = L.tileLayer('https://{s}.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        minZoom: 2,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+    });
+    var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2xlbnRpbmdyIiwiYSI6ImNrcTFhMmEwYzA4MGYydXFzdzRocnVxZm4ifQ.2BaSyLr8v05mNtGEumIDQQ';
+    var grayscale = L.tileLayer(mbUrl, {
+        id: 'mapbox/light-v9',
+        attribution: ''
+    });
+    var streets = L.tileLayer(mbUrl, {
+        id: 'mapbox/streets-v11',
+        attribution: ''
+    });
+    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: ''
+    });
+
     var lat = $("#lat").val();
     var long = $("#long").val();
 
@@ -86,7 +107,11 @@
         'Google Roadmap': googleRoadmap,
         'Google Satellite': googleSatellite,
         'Google Hybrid': googleHybrid,
-        // 'BING': bingMap
+        'Google Terrain': googleTerrain,
+        'Google Traffic': googleTraffic,
+        'Mapbox Grayscale': grayscale,
+        'Mapbox Streets': streets,
+        'OpenStreetMap': osm
     }));
 
     var myLocIco = L.icon({

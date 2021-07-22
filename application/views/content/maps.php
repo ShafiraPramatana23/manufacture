@@ -169,6 +169,27 @@
     var qst = new L.TileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png');
     var googleSatellite = new L.Google('SATELLITE');
     var googleHybrid = new L.Google('HYBRID');
+    var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+    var googleTraffic = L.tileLayer('https://{s}.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        minZoom: 2,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+    });
+    var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2xlbnRpbmdyIiwiYSI6ImNrcTFhMmEwYzA4MGYydXFzdzRocnVxZm4ifQ.2BaSyLr8v05mNtGEumIDQQ';
+    var grayscale = L.tileLayer(mbUrl, {
+        id: 'mapbox/light-v9',
+        attribution: ''
+    });
+    var streets = L.tileLayer(mbUrl, {
+        id: 'mapbox/streets-v11',
+        attribution: ''
+    });
+    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: ''
+    });
 
     function defineIcon(ic) {
         return L.icon({
@@ -208,13 +229,13 @@
         });
     }
 
-    function showMaps(res){
+    function showMaps(res) {
         res.forEach((item, index) => {
             console.log(item);
             var id = item.id_manufacture
-            var popupLink='<a href="detail/' + id + '">Lihat Detail</a>';
+            var popupLink = '<a href="detail/' + id + '">Lihat Detail</a>';
             var marker = new L.Marker.Text(new L.LatLng(item.latitude, item.longitude), item.name_manufacture, {
-                icon: icoMarker[item.id_category-1],
+                icon: icoMarker[item.id_category - 1],
                 title: item.name_manufacture,
                 alt: item.name_manufacture
             }).bindPopup(popupLink);
@@ -244,11 +265,6 @@
             }
         })
 
-        // var bingMap = new L.BingLayer('AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf');
-
-
-
-        // layers = [googleRoadmap];
         var container = L.DomUtil.get('myMap');
         if (container != null) {
             container._leaflet_id = null;
@@ -271,7 +287,11 @@
             'Google Roadmap': googleRoadmap,
             'Google Satellite': googleSatellite,
             'Google Hybrid': googleHybrid,
-            // 'BING': bingMap
+            'Google Terrain': googleTerrain,
+            'Google Traffic': googleTraffic,
+            'Mapbox Grayscale': grayscale,
+            'Mapbox Streets': streets,
+            'OpenStreetMap': osm
         }, {
             'Furniture': furnitureLayer,
             'Karet & Plastik': plastikLayer,
