@@ -41,7 +41,7 @@
     <div class="row">
         <nav class="navbar navbar-expand-lg bg-secondary fixed-top navbar-shrink" id="mainNav">
             <!-- <div class="container"> -->
-            <a class="navbar-brand ms-5" href="#page-top">
+            <a class="navbar-brand ms-3" href="<?php echo base_url('index.php/main'); ?>">
                 <img src="<?php echo base_url("assets/assets/img/factory.svg") ?>" alt="..." width="40" />
                 E-ManufactureJatim
             </a>

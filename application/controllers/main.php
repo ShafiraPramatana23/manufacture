@@ -24,6 +24,7 @@ class Main extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('m_maps');
+		$this->load->helper('number');
 	}
 
 	public function index()
@@ -51,9 +52,11 @@ class Main extends CI_Controller
 		$this->load->view('main', $data);
 	}
 
-	public function detail()
+	public function detail($id)
 	{
 		$data['content'] = "detail";
+		$manuf = $this->m_maps->getDetail($id);
+		$data['dtManuf'] = $manuf;
 		$this->load->view('main', $data);
 	}
 
