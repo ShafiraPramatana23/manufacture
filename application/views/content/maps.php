@@ -211,33 +211,35 @@
     function showMaps(res){
         res.forEach((item, index) => {
             console.log(item);
+            var id = item.id_manufacture
+            var popupLink='<a href="detail/' + id + '">Lihat Detail</a>';
             var marker = new L.Marker.Text(new L.LatLng(item.latitude, item.longitude), item.name_manufacture, {
-                icon: icoMarker[index],
+                icon: icoMarker[item.id_category-1],
                 title: item.name_manufacture,
                 alt: item.name_manufacture
-            });
+            }).bindPopup(popupLink);
 
-            if (item.id_manufacture == 1) {
+            if (item.id_category == 1) {
                 furnitureLayer.addLayer(marker)
-            } else if (item.id_manufacture == 2) {
+            } else if (item.id_category == 2) {
                 plastikLayer.addLayer(marker)
-            } else if (item.id_manufacture == 3) {
+            } else if (item.id_category == 3) {
                 konstruksiLayer.addLayer(marker)
-            } else if (item.id_manufacture == 4) {
+            } else if (item.id_category == 4) {
                 foodLayer.addLayer(marker)
-            } else if (item.id_manufacture == 5) {
+            } else if (item.id_category == 5) {
                 mesinLayer.addLayer(marker)
-            } else if (item.id_manufacture == 6) {
+            } else if (item.id_category == 6) {
                 kimiaLayer.addLayer(marker)
-            } else if (item.id_manufacture == 7) {
+            } else if (item.id_category == 7) {
                 pakaianLayer.addLayer(marker)
-            } else if (item.id_manufacture == 8) {
+            } else if (item.id_category == 8) {
                 kertasLayer.addLayer(marker)
-            } else if (item.id_manufacture == 9) {
+            } else if (item.id_category == 9) {
                 toolsLayer.addLayer(marker)
-            } else if (item.id_manufacture == 10) {
+            } else if (item.id_category == 10) {
                 taniLayer.addLayer(marker)
-            } else if (item.id_manufacture == 11) {
+            } else if (item.id_category == 11) {
                 teknoLayer.addLayer(marker)
             }
         })

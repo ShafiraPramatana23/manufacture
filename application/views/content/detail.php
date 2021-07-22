@@ -68,7 +68,7 @@
     var qst = new L.TileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png');
     var googleSatellite = new L.Google('SATELLITE');
     var googleHybrid = new L.Google('HYBRID');
-    var bingMap = new L.BingLayer('AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf');
+    // var bingMap = new L.BingLayer('AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf');
     var lat = $("#lat").val();
     var long = $("#long").val();
 
@@ -86,7 +86,7 @@
         'Google Roadmap': googleRoadmap,
         'Google Satellite': googleSatellite,
         'Google Hybrid': googleHybrid,
-        'BING': bingMap
+        // 'BING': bingMap
     }));
 
     var myLocIco = L.icon({
