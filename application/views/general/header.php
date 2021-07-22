@@ -62,7 +62,7 @@
                         <?php } ?>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1">
-                        <?php if ($this->uri->segment(2) == 'maps') { ?>
+                        <?php if ($this->uri->segment(2) == 'maps' || $this->uri->segment(2) == 'detail') { ?>
                             <a class="nav-link navs-active py-3 px-0 px-lg-3 rounded" href="<?php echo base_url('index.php/main/maps'); ?>">Maps</a>
                         <?php } else { ?>
                             <a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?php echo base_url('index.php/main/maps'); ?>">Maps

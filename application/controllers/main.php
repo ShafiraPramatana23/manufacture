@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Main extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -28,26 +29,49 @@ class Main extends CI_Controller {
 	public function index()
 	{
 		$data['content'] = "home";
-        $this->load->view('main', $data);
+		$this->load->view('main', $data);
 	}
 
 	public function maps()
 	{
-		$rs = $this->m_maps->get_rs();
-		$data['dtRS'] = $rs;
+		// $rs = $this->m_maps->get_rs();
+		$category = $this->m_maps->getcategory();
+		$city = $this->m_maps->getcity();
+		$manuf = $this->m_maps->getmanufacture(0,0,0,0,0,0,0,0);
+		$data['dtCat'] = $category;
+		$data['dtCt'] = $city;
+		$data['dtManuf'] = $manuf;
 		$data['content'] = "maps";
-        $this->load->view('main', $data);
+		$this->load->view('main', $data);
 	}
 
 	public function about()
 	{
 		$data['content'] = "about";
-        $this->load->view('main', $data);
+		$this->load->view('main', $data);
 	}
 
 	public function detail()
 	{
 		$data['content'] = "detail";
-        $this->load->view('main', $data);
+		$this->load->view('main', $data);
+	}
+
+	public function filterData()
+	{
+		header('Content-Type: application/json');
+
+		$city = floatval($this->input->post('city'));
+		$category = floatval($this->input->post('category'));
+		$popularity = floatval($this->input->post('popularity'));
+		$employee = floatval($this->input->post('employee'));
+		$salaryMin = empty($this->input->post('salaryMin')) ? 0 : floatval($this->input->post('salaryMin'));
+		$salaryMax = empty($this->input->post('salaryMax')) ? 0 : floatval($this->input->post('salaryMax'));
+		$distanceMin = empty($this->input->post('distanceMin')) ? 0 : floatval($this->input->post('distanceMin'));
+		$distanceMax = empty($this->input->post('distanceMax')) ? 0 : floatval($this->input->post('distanceMax'));
+
+		// echo $employee;
+
+		echo json_encode($this->m_maps->getmanufacture($category, $city, $popularity, $employee ,$distanceMin, $distanceMax, $salaryMin, $salaryMax));
 	}
 }

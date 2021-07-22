@@ -52,3 +52,19 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+// $("#buttonFilter").on("click", function(e) {
+//     let formData = new FormData(document.getElementById("filterForm"));
+//     $.ajax({
+//         type: "POST",
+//         url: "<?= base_url('index.php/main/filterData')?>",
+//         data: formData,
+//         dataType: 'JSON',
+//         cache: false,
+//         processData: false,
+//         success: function(res) {
+//             console.log(res);
+//         }
+//     });
+//     e.preventDefault();
+// });
