@@ -3,11 +3,12 @@
         <section class="page-section mb-0" id="filter">
             <form action="<?php echo base_url('index.php/main/detail'); ?>" method="post">
                 <div class="container">
+                    <!-- <h5 class="text-center">FILTER</h5> -->
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Kategori Pabrik :</label>
-                            <select class="form-control" name="kategori" id="exampleFormControlSelect1">
-                                <option value="">Pilih Kategori</option>
+                            <select class="form-control form-control-sm" name="kategori" id="exampleFormControlSelect1">
+                                <option value="0">Semua</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
@@ -26,8 +27,8 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Kota Pabrik :</label>
-                            <select class="form-control" name="kota" id="exampleFormControlSelect1">
-                                <option value="">Pilih Kota</option>
+                            <select class="form-control form-control-sm" name="kota" id="exampleFormControlSelect1">
+                                <option value="0">Semua</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
@@ -40,8 +41,8 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Popularitas :</label>
-                            <select class="form-control" name="popularitas" id="exampleFormControlSelect1">
-                                <option value="">Pilih Popularitas</option>
+                            <select class="form-control form-control-sm" name="popularitas" id="exampleFormControlSelect1">
+                                <option value="0">Semua</option>
                                 <option>Bintang 5</option>
                                 <option>Bintang 4 ke atas</option>
                                 <option>Bintang 3 ke atas</option>
@@ -55,8 +56,8 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Jumlah Karyawan :</label>
-                            <select class="form-control" name="jml_karyawan" id="exampleFormControlSelect1">
-                                <option value="">Pilih Jumlah</option>
+                            <select class="form-control form-control-sm" name="jml_karyawan" id="exampleFormControlSelect1">
+                                <option value="0">Semua</option>
                                 <option>< 50</option>
                                 <option>< 100</option>
                                 <option>< 1000</option>
@@ -69,10 +70,10 @@
                     <div class="row">
                         <label>Jarak dari Pusat Kota :</label>
                         <div class="col">
-                            <input type="text" class="form-control" name="min_jarak" placeholder="Min">
+                            <input type="text" class="form-control form-control-sm" name="min_jarak" placeholder="Min">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="max_jarak" placeholder="Max">
+                            <input type="text" class="form-control form-control-sm" name="max_jarak" placeholder="Max">
                         </div>
                     </div>
 
@@ -80,20 +81,20 @@
                     <div class="row">
                         <label>Rentang Gaji :</label>
                         <div class="col">
-                            <input type="text" class="form-control" name="min_gaji" placeholder="Min">
+                            <input type="text" class="form-control form-control-sm" name="min_gaji" placeholder="Min">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="max_gaji" placeholder="Max">
+                            <input type="text" class="form-control form-control-sm" name="max_gaji" placeholder="Max">
                         </div>
                     </div>
 
                     <br><br>
                     <div class="row">
                         <div class="col">
-                            <button type="submit" class="btn btn-light">Setel Ulang</button>
+                            <button type="submit" class="btn btn-dark btn-sm w-100">Setel Ulang   <i class="fas fa-sync"></i></button>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-dark">Terapkan</button>
+                            <button type="button" class="btn btn-primary w-100 btn-sm">Terapkan   <i class="fas fa-search"></i></button>
                         </div>
                     </div>
             </form>
@@ -104,6 +105,11 @@
             <div class="container">
                 <!-- <h2>INI MAPS</h2> -->
                 <div id="map" style="width: 100%; height: 500px"></div>
+                <div class="row">
+                    <div class="col legend-section">
+                        <p><b>Legend</b></p>
+                    </div>
+                </div>
             </div>
         </section>
     </div>

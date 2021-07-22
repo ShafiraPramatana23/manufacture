@@ -52,7 +52,7 @@
 body {
   margin: 0;
   font-family: var(--bs-font-sans-serif);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
@@ -3927,6 +3927,11 @@ textarea.form-control-lg {
   background-color: #1abc9c;
 }
 
+.navs-active{
+  color: #fff;
+  background-color: #1abc9c;
+}
+
 .nav-fill > .nav-link,
 .nav-fill .nav-item {
   flex: 1 1 auto;
@@ -3958,8 +3963,8 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -10858,7 +10863,7 @@ html {
 }
 
 .page-section {
-  padding: 6rem 0;
+  padding: 5rem 0 0 0 ;
 }
 .page-section .page-section-heading {
   font-size: 2.25rem;
@@ -10970,8 +10975,8 @@ html {
   }
 
   #mainNav.navbar-shrink {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
   }
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.5em;
@@ -11077,4 +11082,18 @@ html {
   background-color: white;
   min-height : 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: sticky;
+}
+
+.legend-section{
+  background-color: white;
+  border-top: 2px solid lightgray;
+  width : 100%;
+  height: 100%;
+  margin: 5px 0 0 -23px;
+  position: fixed;
+}
+
+.icon-user{
+  font-size: 100px;
 }
