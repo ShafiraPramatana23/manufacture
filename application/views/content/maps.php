@@ -116,6 +116,7 @@
             <div class="container">
                 <!-- <h2>INI MAPS</h2> -->
                 <div id="map" style="width: 100%; height: 500px"></div>
+                <!-- <div id="weathermap"></div> -->
                 <div class="row">
                     <div class="col legend-section">
                         <p><b>Legend</b></p>
@@ -130,10 +131,73 @@
     $(document).ready(function() {
         getDataMaps();
     });
-    
-    var dataMaps = [];
 
-    function getDataMaps(){
+    var dataMaps = [];
+    var map;
+
+    var furnitureLayer = new L.LayerGroup();
+    var plastikLayer = new L.LayerGroup();
+    var konstruksiLayer = new L.LayerGroup();
+    var foodLayer = new L.LayerGroup();
+    var mesinLayer = new L.LayerGroup();
+    var kimiaLayer = new L.LayerGroup();
+    var pakaianLayer = new L.LayerGroup();
+    var kertasLayer = new L.LayerGroup();
+    var toolsLayer = new L.LayerGroup();
+    var taniLayer = new L.LayerGroup();
+    var teknoLayer = new L.LayerGroup();
+
+    var furnitureIco = defineIcon('furniture')
+    var plastikIco = defineIcon('plastik')
+    var konstruksiIco = defineIcon('konstruksi')
+    var foodIco = defineIcon('makanan')
+    var mesinIco = defineIcon('mesin')
+    var kimiaIco = defineIcon('kimia')
+    var pakaianIco = defineIcon('fashion')
+    var kertasIco = defineIcon('package')
+    var toolsIco = defineIcon('peralatan')
+    var taniIco = defineIcon('pertanian')
+    var teknoIco = defineIcon('teknologi')
+
+    var icoMarker = [furnitureIco, plastikIco, konstruksiIco, foodIco, mesinIco, kimiaIco, pakaianIco, kertasIco, toolsIco, taniIco, teknoIco];
+
+    function defineIcon(ic) {
+        return L.icon({
+            iconUrl: '<?= base_url() ?>assets/assets/img/icon/' + ic + '.svg',
+            iconSize: [35, 35], // size of the icon
+            shadowSize: [10, 14], // size of the shadow
+            iconAnchor: [22, 24], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 12], // the same for the shadow
+            popupAnchor: [-3, -16] // point from which the popup should open relative to the iconAnchor
+        });
+    }
+
+    function getDataMaps() {
+        // if (map != null) {
+        //     map.off()
+        //     map.remove()
+        // }
+
+        // furnitureLayer = ""
+        // plastikLayer = ""
+        // konstruksiLayer = ""
+        // foodLayer = ""
+        // mesinLayer = ""
+        // kimiaLayer = ""
+        // pakaianLayer = ""
+        // kertasLayer = ""
+        // toolsLayer = ""
+        // taniLayer = ""
+        // teknoLayer = ""
+
+        // var container = L.DomUtil.get('map');
+        // if (container != null) {
+        //     container._leaflet_id = null;
+        //     console.log('kesini')
+        // } else {
+        //     console.log('gakdong')
+        // }
+
         let formData = $("#filterForm").serialize();
         $.ajax({
             type: "POST",
@@ -144,68 +208,90 @@
             processData: false,
             success: function(res) {
                 console.log(res);
-                dataMaps = res;
+                showMaps(res)
             }
         });
     }
 
+    function showMaps(res) {
+        res.forEach((item, index) => {
+            var marker = new L.Marker.Text(new L.LatLng(item.latitude, item.longitude), item.name_manufacture, {
+                icon: icoMarker[index],
+                title: item.name_manufacture,
+                alt: item.name_manufacture
+            });
 
-    // var rsLayer = new L.LayerGroup();
-    // var dokterLayer = new L.LayerGroup();
+            if (item.id_manufacture == 1) {
+                furnitureLayer.addLayer(marker)
+            } else if (item.id_manufacture == 2) {
+                plastikLayer.addLayer(marker)
+            } else if (item.id_manufacture == 3) {
+                konstruksiLayer.addLayer(marker)
+            } else if (item.id_manufacture == 4) {
+                foodLayer.addLayer(marker)
+            } else if (item.id_manufacture == 5) {
+                mesinLayer.addLayer(marker)
+            } else if (item.id_manufacture == 6) {
+                kimiaLayer.addLayer(marker)
+            } else if (item.id_manufacture == 7) {
+                pakaianLayer.addLayer(marker)
+            } else if (item.id_manufacture == 8) {
+                kertasLayer.addLayer(marker)
+            } else if (item.id_manufacture == 9) {
+                toolsLayer.addLayer(marker)
+            } else if (item.id_manufacture == 10) {
+                taniLayer.addLayer(marker)
+            } else if (item.id_manufacture == 11) {
+                teknoLayer.addLayer(marker)
+            }
+        })
 
-    // var rsico = L.icon({
-    //     iconUrl: '<?= base_url() ?>assets/assets/img/rs.png',
-    //     iconSize: [20, 20], // size of the icon
-    //     shadowSize: [10, 14], // size of the shadow
-    //     iconAnchor: [22, 64], // point of the icon which will correspond to marker's location
-    //     shadowAnchor: [4, 12], // the same for the shadow
-    //     popupAnchor: [-3, -16] // point from which the popup should open relative to the iconAnchor
-    // });
+        var googleRoadmap = new L.Google('ROADMAP');
+        var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/4c09f91134dc40008537e4bbdf6b606e/22677/256/{z}/{x}/{y}.png');
+        var mpn = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        var qst = new L.TileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png');
+        var googleSatellite = new L.Google('SATELLITE');
+        var googleHybrid = new L.Google('HYBRID');
+        // var bingMap = new L.BingLayer('AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf');
 
-    // <?php
-        // foreach ($dtRS as $row) {
-        //     echo " var rsMarker = new L.Marker.Text(new L.LatLng(" . $row["y"] . ' , ' . $row["x"] . "), '" . $row['nama_rs'] . "',{icon: rsico}).bindPopup('<a href=\"content/dtl_rs.php?dtl_rs=" . $row["id_rs"] . "\"target=\"_blank\">" . $row['nama_rs'] . "<br><center><img width=\"80px;\" src=\"assets/assets/img/rs.png\"></center>');";
-        //     echo ' rsLayer.addLayer(rsMarker); ';
-        // }
-        // 
-        ?>
+        map = new L.Map(document.getElementById("map"), {
+            center: new L.LatLng(-7.981894, 112.626503),
+            zoom: 13,
+            layers: [googleRoadmap, furnitureLayer, plastikLayer, konstruksiLayer, foodLayer, mesinLayer, kimiaLayer, pakaianLayer, kertasLayer, toolsLayer, taniLayer, teknoLayer]
+        });
 
-    // var googleRoadmap = new L.Google('ROADMAP');
-    // var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/4c09f91134dc40008537e4bbdf6b606e/22677/256/{z}/{x}/{y}.png');
-    // var mpn = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    // var qst = new L.TileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png');
-    // var googleSatellite = new L.Google('SATELLITE');
-    // var googleHybrid = new L.Google('HYBRID');
-    // var bingMap = new L.BingLayer('AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf');
+        map.addControl(new L.Control.Scale());
+        map.addControl(new L.Control.Layers({
+            'Cloudmade': cloudmade,
+            'Mapnik': mpn,
+            'MapQuest': qst,
+            'Google Roadmap': googleRoadmap,
+            'Google Satellite': googleSatellite,
+            'Google Hybrid': googleHybrid,
+            // 'BING': bingMap
+        }, {
+            'Furniture': furnitureLayer,
+            'Karet & Plastik': plastikLayer,
+            'Kontruksi': konstruksiLayer,
+            'Makanan & Minuman': foodLayer,
+            'Mesin & Otomotif': mesinLayer,
+            'Obat & Bahan Kimia': kimiaLayer,
+            'Pakaian': pakaianLayer,
+            'Pengemasan & Kertas': kertasLayer,
+            'Peralatan': toolsLayer,
+            'Pertanian': taniLayer,
+            'Teknologi': teknoLayer
+        }));
 
-    // var map = new L.Map(document.getElementById("map"), {
-    //     center: new L.LatLng(-7.981894, 112.626503),
-    //     zoom: 13,
-    //     layers: [googleRoadmap, rsLayer, dokterLayer]
-    // });
-
-    // map.addControl(new L.Control.Scale());
-    // map.addControl(new L.Control.Layers({
-    //     'Cloudmade': cloudmade,
-    //     'Mapnik': mpn,
-    //     'MapQuest': qst,
-    //     'Google Roadmap': googleRoadmap,
-    //     'Google Satellite': googleSatellite,
-    //     'Google Hybrid': googleHybrid,
-    //     'BING': bingMap
-    // }, {
-    //     'Rumah Sakit': rsLayer,
-    //     'Dokter': dokterLayer
-    // }));
-
-    // var myLocIco = L.icon({
-    //     iconUrl: '<?= base_url() ?>assets/assets/img/marker.svg',
-    //     iconSize: [50, 50],
-    //     iconAnchor: [25, 35],
-    // });
-    // L.marker([-7.981894, 112.626503], {
-    //     icon: myLocIco
-    // }).addTo(map).bindPopup("Lokasi Anda");
+        var myLocIco = L.icon({
+            iconUrl: '<?= base_url() ?>assets/assets/img/marker.svg',
+            iconSize: [50, 50],
+            iconAnchor: [25, 35],
+        });
+        L.marker([-7.981894, 112.626503], {
+            icon: myLocIco
+        }).addTo(map).bindPopup("Lokasi Anda");
+    }
 
     // map.on('click', onMapClick);
 
