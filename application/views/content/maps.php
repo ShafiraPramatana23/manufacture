@@ -115,7 +115,9 @@
         <section class="page-section bg-white text-primary mb-0" id="about">
             <div class="container">
                 <!-- <h2>INI MAPS</h2> -->
-                <div id="map" style="width: 100%; height: 500px"></div>
+                <div id="map">
+                    <div id="myMap" style="height:100vh;"></div>
+                </div>
                 <!-- <div id="weathermap"></div> -->
                 <div class="row">
                     <div class="col legend-section">
@@ -133,7 +135,7 @@
     });
 
     var dataMaps = [];
-    var map;
+    var mapLayer = [];
 
     var furnitureLayer = new L.LayerGroup();
     var plastikLayer = new L.LayerGroup();
@@ -161,6 +163,13 @@
 
     var icoMarker = [furnitureIco, plastikIco, konstruksiIco, foodIco, mesinIco, kimiaIco, pakaianIco, kertasIco, toolsIco, taniIco, teknoIco];
 
+    var googleRoadmap = new L.Google('ROADMAP');
+    var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/4c09f91134dc40008537e4bbdf6b606e/22677/256/{z}/{x}/{y}.png');
+    var mpn = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    var qst = new L.TileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png');
+    var googleSatellite = new L.Google('SATELLITE');
+    var googleHybrid = new L.Google('HYBRID');
+
     function defineIcon(ic) {
         return L.icon({
             iconUrl: '<?= base_url() ?>assets/assets/img/icon/' + ic + '.svg',
@@ -173,31 +182,6 @@
     }
 
     function getDataMaps() {
-        // if (map != null) {
-        //     map.off()
-        //     map.remove()
-        // }
-
-        // furnitureLayer = ""
-        // plastikLayer = ""
-        // konstruksiLayer = ""
-        // foodLayer = ""
-        // mesinLayer = ""
-        // kimiaLayer = ""
-        // pakaianLayer = ""
-        // kertasLayer = ""
-        // toolsLayer = ""
-        // taniLayer = ""
-        // teknoLayer = ""
-
-        // var container = L.DomUtil.get('map');
-        // if (container != null) {
-        //     container._leaflet_id = null;
-        //     console.log('kesini')
-        // } else {
-        //     console.log('gakdong')
-        // }
-
         let formData = $("#filterForm").serialize();
         $.ajax({
             type: "POST",
@@ -207,14 +191,26 @@
             cache: false,
             processData: false,
             success: function(res) {
-                console.log(res);
-                showMaps(res)
+                mapLayer = [googleRoadmap];
+                furnitureLayer.clearLayers();
+                plastikLayer.clearLayers();
+                konstruksiLayer.clearLayers();
+                foodLayer.clearLayers();
+                mesinLayer.clearLayers();
+                kimiaLayer.clearLayers();
+                pakaianLayer.clearLayers();
+                kertasLayer.clearLayers();
+                toolsLayer.clearLayers();
+                taniLayer.clearLayers();
+                teknoLayer.clearLayers();
+                showMaps(res);
             }
         });
     }
 
-    function showMaps(res) {
+    function showMaps(res){
         res.forEach((item, index) => {
+            console.log(item);
             var marker = new L.Marker.Text(new L.LatLng(item.latitude, item.longitude), item.name_manufacture, {
                 icon: icoMarker[index],
                 title: item.name_manufacture,
@@ -246,18 +242,23 @@
             }
         })
 
-        var googleRoadmap = new L.Google('ROADMAP');
-        var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/4c09f91134dc40008537e4bbdf6b606e/22677/256/{z}/{x}/{y}.png');
-        var mpn = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-        var qst = new L.TileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png');
-        var googleSatellite = new L.Google('SATELLITE');
-        var googleHybrid = new L.Google('HYBRID');
         // var bingMap = new L.BingLayer('AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf');
 
-        map = new L.Map(document.getElementById("map"), {
+
+
+        // layers = [googleRoadmap];
+        var container = L.DomUtil.get('myMap');
+        if (container != null) {
+            container._leaflet_id = null;
+        }
+
+        mapLayer = [googleRoadmap, furnitureLayer, plastikLayer, konstruksiLayer, foodLayer, mesinLayer, kimiaLayer, pakaianLayer, kertasLayer, toolsLayer, taniLayer, teknoLayer];
+
+        $('#map').html('<div id="myMap" style="width: 100%; height: 500px"></div>');
+        var map = new L.Map('myMap', {
             center: new L.LatLng(-7.981894, 112.626503),
             zoom: 13,
-            layers: [googleRoadmap, furnitureLayer, plastikLayer, konstruksiLayer, foodLayer, mesinLayer, kimiaLayer, pakaianLayer, kertasLayer, toolsLayer, taniLayer, teknoLayer]
+            layers: mapLayer
         });
 
         map.addControl(new L.Control.Scale());
