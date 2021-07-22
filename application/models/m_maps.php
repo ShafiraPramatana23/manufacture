@@ -39,7 +39,7 @@ class M_maps extends CI_Model
     }
 
     if ($popularity != 0) {
-      $sql = $sql . " and m.popularity >= " . $popularity;
+      $sql = $sql . " and m.rating >= " . $popularity;
     }
 
     if ($employee != 0) {
@@ -72,6 +72,18 @@ class M_maps extends CI_Model
         $sql = $sql . " and m.distance > " . $distanceMin . " and m.distance < " . $distanceMax;
       }
     }
+
+    $query = $this->db->query($sql);
+    return $query->result_array();
+  }
+
+  public function getDetail($id)
+  {
+    $sql = "select * from manufacture m 
+    inner join city c on m.id_city = c.id_city
+    inner join category cat on m.id_category = cat.id_category
+    left join photo p on m.id_photo = p.id_photo
+    where m.id_manufacture = " . $id;
 
     $query = $this->db->query($sql);
     return $query->result_array();

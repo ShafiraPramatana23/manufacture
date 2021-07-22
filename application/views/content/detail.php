@@ -3,57 +3,59 @@
         <section class="page-section mb-0" id="filter">
             <div class="container">
                 <div class="card-header">
-                    <h4>Nama Pabrik</h4>
+                    <h4><?php echo $dtManuf[0]['name_manufacture']; ?></h4>
                 </div>
                 <div class="text-center">
-                    <img class="img-fluid" style="width: 30%; height: 30%; margin: 5%" src="<?= base_url() ?>assets/assets/img/portfolio/game.png" alt="..." />
+                    <img class="img-fluid" style="max-width: 30%; max-height: 30%; margin: 5%" src="<?= base_url() ?>assets/assets/img/portfolio/game.png" alt="..." />
                 </div>
                 <br>
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row ms-3">
+                    <div class="col-md-8">
                         <div class="row">
                             <p class="mb-0"><b>Kategori</b></p>
-                            <p class="text-primary mt-0">Makanan & Minuman</p>
+                            <p class="text-primary mt-0"><?php echo $dtManuf[0]['name_category']; ?></p>
                         </div>
                         <div class="row">
                             <p class="mb-0"><b>Email</b></p>
-                            <p class="text-primary mt-0">abcedgeemailx@email.com</p>
+                            <p class="text-primary mt-0"><?php echo $dtManuf[0]['email']; ?></p>
                         </div>
                         <div class="row">
                             <p class="mb-0"><b>Nomor Telepon</b></p>
-                            <p class="text-primary mt-0">0341-2348777</p>
+                            <p class="text-primary mt-0"><?php echo $dtManuf[0]['phone_number']; ?></p>
                         </div>
                         <div class="row">
                             <p class="mb-0"><b>Alamat</b></p>
-                            <p class="text-primary mt-0">Jalan Malang12 dhgfsj hdgfds fgdsgf dfsfge fdshgf gdhsgf fdgsjfgy</p>
+                            <p class="text-primary mt-0"><?php echo $dtManuf[0]['address']; ?></p>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="row">
                             <p class="mb-0"><b>Popularitas</b></p>
-                            <p class="text-primary mt-0">3,5</p>
+                            <p class="text-primary mt-0"><?php echo $dtManuf[0]['rating']; ?></p>
                         </div>
                         <div class="row">
                             <p class="mb-0"><b>Standar Gaji</b></p>
-                            <p class="text-primary mt-0">Rp 3.000.000,00</p>
+                            <p class="text-primary mt-0"><?php echo "Rp " . number_format($dtManuf[0]['salary']); ?></p>
                         </div>
                         <div class="row">
                             <p class="mb-0"><b>Jumlah Karyawan</b></p>
-                            <p class="text-primary mt-0">2000</p>
+                            <p class="text-primary mt-0"><?php echo $dtManuf[0]['employee']; ?></p>
                         </div>
                         <div class="row">
                             <p class="mb-0"><b>Jarak Dari Pusat Kota</b></p>
-                            <p class="text-primary mt-0">10,3 km</p>
+                            <p class="text-primary mt-0"><?php echo $dtManuf[0]['distance']; ?> km</p>
                         </div>
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="lat" value="<?php echo $dtManuf[0]['latitude'];?>">
+            <input type="hidden" id="long" value="<?php echo $dtManuf[0]['longitude'];?>">
         </section>
     </div>
     <div class="col-md-5">
-        <section class="page-section bg-white text-primary mb-0" id="about">
+        <section class="page-section h-100 bg-light text-primary mb-0" id="about">
             <div class="container">
-                <div id="map" style="width: 100%; height: 500px"></div>
+                <div id="map" style="width: 100%; height: 500px; margin-top:30px"></div>
             </div>
         </section>
     </div>
@@ -67,9 +69,11 @@
     var googleSatellite = new L.Google('SATELLITE');
     var googleHybrid = new L.Google('HYBRID');
     var bingMap = new L.BingLayer('AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf');
+    var lat = $("#lat").val();
+    var long = $("#long").val();
 
     var map = new L.Map(document.getElementById("map"), {
-        center: new L.LatLng(-7.981894, 112.626503),
+        center: new L.LatLng(lat, long),
         zoom: 13,
         layers: [googleRoadmap]
     });
@@ -90,7 +94,7 @@
         iconSize: [50, 50],
         iconAnchor: [25, 35],
     });
-    L.marker([-7.981894, 112.626503], {
+    L.marker([lat, long], {
         icon: myLocIco
-    }).addTo(map).bindPopup("Lokasi Anda");
+    }).addTo(map).bindPopup("Lokasi " + "<?= $dtManuf[0]['name_manufacture'] ?>");
 </script>
