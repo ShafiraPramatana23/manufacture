@@ -7,12 +7,8 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Kategori Pabrik :</label>
-                            <select class="form-control form-control-sm" name="category" id="exampleFormControlSelect1">
+                            <select class="form-control form-control-sm" name="category" id="category">
                                 <option value="0">Semua</option>
-                                <!-- <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option> -->
                                 <?php
                                 $i = 0;
                                 foreach ($dtCat as $dtCat[]) { ?>
@@ -28,12 +24,8 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Kota Pabrik :</label>
-                            <select class="form-control form-control-sm" name="city" id="exampleFormControlSelect1">
+                            <select class="form-control form-control-sm" name="city" id="city">
                                 <option value="0">Semua</option>
-                                <!-- <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option> -->
                                 <?php
                                 $i = 0;
                                 foreach ($dtCt as $dtCt[]) { ?>
@@ -49,7 +41,7 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Popularitas :</label>
-                            <select class="form-control form-control-sm" name="popularity" id="exampleFormControlSelect1">
+                            <select class="form-control form-control-sm" name="popularity" id="popularity">
                                 <option value="0">Semua</option>
                                 <option value="5">Bintang 5</option>
                                 <option value="4">Bintang 4 ke atas</option>
@@ -64,7 +56,7 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Jumlah Karyawan :</label>
-                            <select class="form-control form-control-sm" name="employee" id="exampleFormControlSelect1">
+                            <select class="form-control form-control-sm" name="employee" id="employee">
                                 <option value="0">Semua</option>
                                 <option value="50">
                                     < 50</option>
@@ -81,10 +73,10 @@
                     <div class="row">
                         <label>Jarak dari Pusat Kota :</label>
                         <div class="col">
-                            <input type="number" min="0" class="form-control form-control-sm" name="distanceMin" placeholder="Min">
+                            <input type="number" min="0" class="form-control form-control-sm" name="distanceMin" id="distanceMin" placeholder="Min">
                         </div>
                         <div class="col">
-                            <input type="number" min="0" class="form-control form-control-sm" name="distanceMax" placeholder="Max">
+                            <input type="number" min="0" class="form-control form-control-sm" name="distanceMax" id="distanceMax" placeholder="Max">
                         </div>
                     </div>
 
@@ -92,17 +84,17 @@
                     <div class="row">
                         <label>Rentang Gaji :</label>
                         <div class="col">
-                            <input type="number" min="0" class="form-control form-control-sm" name="salaryMin" placeholder="Min">
+                            <input type="number" min="0" class="form-control form-control-sm" name="salaryMin" id="salaryMin" placeholder="Min">
                         </div>
                         <div class="col">
-                            <input type="number" min="0" class="form-control form-control-sm" name="salaryMax" placeholder="Max">
+                            <input type="number" min="0" class="form-control form-control-sm" name="salaryMax" id="salaryMax" placeholder="Max">
                         </div>
                     </div>
 
                     <br><br>
                     <div class="row">
                         <div class="col">
-                            <button type="button" class="btn btn-dark btn-sm w-100">Setel Ulang <i class="fas fa-sync"></i></button>
+                            <button type="button" onclick="resetMaps()" class="btn btn-dark btn-sm w-100">Setel Ulang <i class="fas fa-sync"></i></button>
                         </div>
                         <div class="col">
                             <button type="button" onclick="getDataMaps()" id="buttonFilter" class="btn btn-primary w-100 btn-sm">Terapkan <i class="fas fa-search"></i></button>
@@ -154,6 +146,19 @@
     $(document).ready(function() {
         getDataMaps();
     });
+
+    function resetMaps(){
+        $("#category").val(0);
+        $("#city").val(0);
+        $("#popularity").val(0);
+        $("#employee").val(0);
+        $("#distanceMin").val(''); 
+        $("#distanceMax").val('');
+        $("#salaryMin").val(''); 
+        $("#salaryMax").val('');
+
+        getDataMaps();
+    }
 
     var dataMaps = [];
     var mapLayer = [];
