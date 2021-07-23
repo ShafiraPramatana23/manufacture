@@ -12,7 +12,7 @@ class M_maps extends CI_Model
 
   public function getcity()
   {
-    $sql = "select * from city";
+    $sql = "select * from city c where c.id_city in (select id_city from manufacture)";
     $query = $this->db->query($sql);
     return $query->result_array();
   }
