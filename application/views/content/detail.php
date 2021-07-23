@@ -8,6 +8,8 @@
                 <div class="text-center">
                     <?php if ($dtManuf[0]['filename'] != '-') { ?>
                         <img class="img-fluid" style="max-width: 30%; max-height: 180px; margin: 5%" src="<?= base_url() ?>assets/assets/img/gallery/<?= $dtManuf[0]['filename'] ?>" alt="..." />
+                    <?php } else { ?>
+                        <img class="img-fluid" style="max-width: 30%; max-height: 180px; margin: 5%" src="<?= base_url() ?>assets/assets/img/gallery/default_factory.jpg" alt="..." />
                     <?php } ?>
                 </div>
                 <br>
