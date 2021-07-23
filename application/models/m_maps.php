@@ -22,7 +22,7 @@ class M_maps extends CI_Model
     $query = $this->db->query($sql);
     return $query->result_array();
   }
-  public function getmanufacture($category, $city, $popularity, $employee, $distanceMin, $distanceMax, $salaryMin, $salaryMax)
+  public function getmanufacture($category, $city, $popularity, $employee, $work_hour, $distanceMin, $distanceMax, $salaryMin, $salaryMax)
   {
     $sql = "select * from manufacture m 
     inner join city c on m.id_city = c.id_city
@@ -36,6 +36,10 @@ class M_maps extends CI_Model
 
     if ($city != 0) {
       $sql = $sql . " and m.id_city = " . $city;
+    }
+
+    if ($work_hour != 0) {
+      $sql = $sql . " and m.work_hour = " . $work_hour;
     }
 
     if ($popularity != 0) {

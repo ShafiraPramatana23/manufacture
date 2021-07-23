@@ -38,7 +38,7 @@ class Main extends CI_Controller
 		// $rs = $this->m_maps->get_rs();
 		$category = $this->m_maps->getcategory();
 		$city = $this->m_maps->getcity();
-		$manuf = $this->m_maps->getmanufacture(0,0,0,0,0,0,0,0);
+		$manuf = $this->m_maps->getmanufacture(0,0,0,0,0,0,0,0,0);
 		$data['dtCat'] = $category;
 		$data['dtCt'] = $city;
 		$data['dtManuf'] = $manuf;
@@ -68,6 +68,7 @@ class Main extends CI_Controller
 		$category = floatval($this->input->post('category'));
 		$popularity = floatval($this->input->post('popularity'));
 		$employee = floatval($this->input->post('employee'));
+		$workhour = floatval($this->input->post('work_hour'));
 		$salaryMin = empty($this->input->post('salaryMin')) ? 0 : floatval($this->input->post('salaryMin'));
 		$salaryMax = empty($this->input->post('salaryMax')) ? 0 : floatval($this->input->post('salaryMax'));
 		$distanceMin = empty($this->input->post('distanceMin')) ? 0 : floatval($this->input->post('distanceMin'));
@@ -75,6 +76,6 @@ class Main extends CI_Controller
 
 		// echo $employee;
 
-		echo json_encode($this->m_maps->getmanufacture($category, $city, $popularity, $employee ,$distanceMin, $distanceMax, $salaryMin, $salaryMax));
+		echo json_encode($this->m_maps->getmanufacture($category, $city, $popularity, $employee , $workhour ,$distanceMin, $distanceMax, $salaryMin, $salaryMax));
 	}
 }

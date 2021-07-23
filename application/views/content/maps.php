@@ -55,6 +55,18 @@
                     <br>
                     <div class="form-group">
                         <div class="form-group">
+                            <label for="exampleFormControlSelect1">Jam Kerja :</label>
+                            <select class="form-control form-control-sm" name="work_hour" id="work_hour">
+                                <option value="0">Semua</option>
+                                <option value="7">7 jam/hari</option>
+                                <option value="8">8 jam/hari</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                        <div class="form-group">
                             <label for="exampleFormControlSelect1">Jumlah Karyawan :</label>
                             <select class="form-control form-control-sm" name="employee" id="employee">
                                 <option value="0">Semua</option>
@@ -91,7 +103,7 @@
                         </div>
                     </div>
 
-                    <br><br>
+                    <br>
                     <div class="row">
                         <div class="col">
                             <button type="button" onclick="resetMaps()" class="btn btn-dark btn-sm w-100">Setel Ulang <i class="fas fa-sync"></i></button>
@@ -152,6 +164,7 @@
         $("#city").val(0);
         $("#popularity").val(0);
         $("#employee").val(0);
+        $("#work_hour").val(0);
         $("#distanceMin").val(''); 
         $("#distanceMax").val('');
         $("#salaryMin").val(''); 
@@ -250,6 +263,7 @@
                 toolsLayer.clearLayers();
                 taniLayer.clearLayers();
                 teknoLayer.clearLayers();
+                console.log(res);
                 showMaps(res);
             }
         });
@@ -257,7 +271,6 @@
 
     function showMaps(res) {
         res.forEach((item, index) => {
-            console.log(item);
             var id = item.id_manufacture
             var popupLink = '<a href="detail/' + id + '">Lihat Detail</a>';
             var marker = new L.Marker.Text(new L.LatLng(item.latitude, item.longitude), item.name_manufacture, {

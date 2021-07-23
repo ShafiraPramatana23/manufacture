@@ -34,6 +34,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="row">
+                            <p class="mb-0"><b>Jam Kerja</b></p>
+                            <p class="text-primary mt-0"><?php echo $dtManuf[0]['work_hour']; ?> jam/hari</p>
+                        </div>
+                        <div class="row">
                             <p class="mb-0"><b>Popularitas</b></p>
                             <p class="text-primary mt-0"><?php echo $dtManuf[0]['rating']; ?></p>
                         </div>
