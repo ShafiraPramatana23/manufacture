@@ -116,12 +116,33 @@
             <div class="container">
                 <!-- <h2>INI MAPS</h2> -->
                 <div id="map">
-                    <div id="myMap" style="height:100vh;"></div>
+                    <div id="myMap"></div>
                 </div>
                 <!-- <div id="weathermap"></div> -->
                 <div class="row">
-                    <div class="col legend-section">
-                        <p><b>Legend</b></p>
+                    <div class="col legend-section ps-5">
+                        <p class="mb-1"><b>Legend</b></p>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/furniture.svg") ?>" alt="..." width="20" /> <span class="text-legend">Furniture</span></p>
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/plastik.svg") ?>" alt="..." width="20" /> <span class="text-legend">Karet & Plastik</span></p>
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/teknologi.svg") ?>" alt="..." width="20" /> <span class="text-legend">Teknologi</span></p>
+                            </div>
+                            <div class="col-md-2">
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/konstruksi.svg") ?>" alt="..." width="20" /> <span class="text-legend">Kontruksi</span></p>
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/makanan.svg") ?>" alt="..." width="20" /> <span class="text-legend">Makanan & Minuman</span></p>
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/mesin.svg") ?>" alt="..." width="20" /> <span class="text-legend">Mesin & Otomotif</span></p>
+                            </div>
+                            <div class="col-md-2">
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/kimia.svg") ?>" alt="..." width="20" /> <span class="text-legend">Obat & Bahan Kimia</span></p>
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/fashion.svg") ?>" alt="..." width="20" /> <span class="text-legend">Pakaian</span></p>
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/package.svg") ?>" alt="..." width="20" /> <span class="text-legend">Pengemasan & Kertas</span></p>
+                            </div>
+                            <div class="col-md-2">
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/peralatan.svg") ?>" alt="..." width="20" /> <span class="text-legend">Peralatan</span></p>
+                                <p class="mb-0"><img src="<?php echo base_url("assets/assets/img/icon/pertanian.svg") ?>" alt="..." width="20" /> <span class="text-legend">Pertanian</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,7 +293,7 @@
 
         mapLayer = [googleRoadmap, furnitureLayer, plastikLayer, konstruksiLayer, foodLayer, mesinLayer, kimiaLayer, pakaianLayer, kertasLayer, toolsLayer, taniLayer, teknoLayer];
 
-        $('#map').html('<div id="myMap" style="width: 100%; height: 500px"></div>');
+        $('#map').html('<div id="myMap" style="width: 100%; height: 450px"></div>');
         var map = new L.Map('myMap', {
             center: new L.LatLng(-7.981894, 112.626503),
             zoom: 13,

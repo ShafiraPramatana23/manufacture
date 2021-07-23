@@ -11,6 +11,6 @@
             <div class="divider-custom-line"></div>
         </div>
         <!-- Masthead Subheading-->
-        <p class="masthead-subheading font-weight-light mb-0">Web GIS ini berisi data-data pabrik yang terdapat di Jawa Timur. Menyediakan fitur penyaringan data berdasarkan kota, kategori, dll. </p>
+        <p class="masthead-subheading font-weight-light mb-0">Web GIS ini berisi informasi mengenai data-data pabrik yang terdapat di Jawa Timur. Menyediakan fitur penyaringan data berdasarkan kota, kategori, dll. </p>
     </div>
 </header>

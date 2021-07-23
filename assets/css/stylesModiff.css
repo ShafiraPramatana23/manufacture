@@ -11097,3 +11097,8 @@ html {
 .icon-user{
   font-size: 100px;
 }
+
+.text-legend {
+  color: #000 !important;
+  margin-left: 10px;
+}
