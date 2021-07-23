@@ -6,7 +6,9 @@
                     <h4><?php echo $dtManuf[0]['name_manufacture']; ?></h4>
                 </div>
                 <div class="text-center">
-                    <img class="img-fluid" style="max-width: 30%; max-height: 30%; margin: 5%" src="<?= base_url() ?>assets/assets/img/portfolio/game.png" alt="..." />
+                    <?php if ($dtManuf[0]['filename'] != '-') { ?>
+                        <img class="img-fluid" style="max-width: 30%; max-height: 180px; margin: 5%" src="<?= base_url() ?>assets/assets/img/gallery/<?= $dtManuf[0]['filename'] ?>" alt="..." />
+                    <?php } ?>
                 </div>
                 <br>
                 <div class="row ms-3">
