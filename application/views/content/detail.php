@@ -97,21 +97,25 @@
     var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: ''
     });
+    var ocm = L.tileLayer('https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=1a22c5eb89b54dbaa8d01428cfe16dba', {
+        attribution: ''
+    });
+    var neighbourhood = L.tileLayer('https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=1a22c5eb89b54dbaa8d01428cfe16dba', {
+        attribution: ''
+    });
 
     var lat = $("#lat").val();
     var long = $("#long").val();
 
     var map = new L.Map(document.getElementById("map"), {
         center: new L.LatLng(lat, long),
-        zoom: 13,
+        zoom: 10,
         layers: [googleRoadmap]
     });
 
     map.addControl(new L.Control.Scale());
     map.addControl(new L.Control.Layers({
-        'Cloudmade': cloudmade,
         'Mapnik': mpn,
-        'MapQuest': qst,
         'Google Roadmap': googleRoadmap,
         'Google Satellite': googleSatellite,
         'Google Hybrid': googleHybrid,
@@ -119,7 +123,10 @@
         'Google Traffic': googleTraffic,
         'Mapbox Grayscale': grayscale,
         'Mapbox Streets': streets,
-        'OpenStreetMap': osm
+        'OpenStreetMap': osm,
+        'OpenCycleMap': ocm,
+        'Neighbourhood': neighbourhood
+
     }));
 
     var myLocIco = L.icon({

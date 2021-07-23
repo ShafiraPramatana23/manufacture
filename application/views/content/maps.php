@@ -203,9 +203,7 @@
     var icoMarker = [furnitureIco, plastikIco, konstruksiIco, foodIco, mesinIco, kimiaIco, pakaianIco, kertasIco, toolsIco, taniIco, teknoIco];
 
     var googleRoadmap = new L.Google('ROADMAP');
-    var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/4c09f91134dc40008537e4bbdf6b606e/22677/256/{z}/{x}/{y}.png');
     var mpn = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    var qst = new L.TileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png');
     var googleSatellite = new L.Google('SATELLITE');
     var googleHybrid = new L.Google('HYBRID');
     var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
@@ -227,6 +225,12 @@
         attribution: ''
     });
     var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: ''
+    });
+    var ocm = L.tileLayer('https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=1a22c5eb89b54dbaa8d01428cfe16dba', {
+        attribution: ''
+    });
+    var neighbourhood = L.tileLayer('https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=1a22c5eb89b54dbaa8d01428cfe16dba', {
         attribution: ''
     });
 
@@ -314,15 +318,13 @@
         $('#map').html('<div id="myMap" style="width: 100%; height: 450px"></div>');
         var map = new L.Map('myMap', {
             center: new L.LatLng(-7.981894, 112.626503),
-            zoom: 13,
+            zoom: 10,
             layers: mapLayer
         });
 
         map.addControl(new L.Control.Scale());
         map.addControl(new L.Control.Layers({
-            'Cloudmade': cloudmade,
             'Mapnik': mpn,
-            'MapQuest': qst,
             'Google Roadmap': googleRoadmap,
             'Google Satellite': googleSatellite,
             'Google Hybrid': googleHybrid,
@@ -330,7 +332,9 @@
             'Google Traffic': googleTraffic,
             'Mapbox Grayscale': grayscale,
             'Mapbox Streets': streets,
-            'OpenStreetMap': osm
+            'OpenStreetMap': osm,
+            'OpenCycleMap': ocm,
+            'Neighbourhood': neighbourhood
         }, {
             'Furniture': furnitureLayer,
             'Karet & Plastik': plastikLayer,
